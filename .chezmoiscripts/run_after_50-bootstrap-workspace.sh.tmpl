@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+{{ template "shared_script_utils.bash" . }}
+
+header "Creating Workspace"
+
+WORKSPACE_PATH="${HOME}/Workspace"
+
+if [[ ! -d "${WORKSPACE_PATH}" ]]; then
+    info "Creating new workspace at ${WORKSPACE_PATH}"
+    mkdir "${WORKSPACE_PATH}"
+    info "Workspace created successfully."
+else
+    info "Skipping. Workspace already exists at ${WORKSPACE_PATH}"
+fi

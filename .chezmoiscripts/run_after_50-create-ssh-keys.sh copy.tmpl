@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+{{ template "shared_script_utils.bash" . }}
+
+header "Creating SSH keys"
+
+SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
+
+if [[ ! -f "${SSH_KEY_PATH}" ]]; then
+    info "Generating SSH key..."
+    ssh-keygen -t ed25519 -C "14829553+kawo123@users.noreply.github.com" -f "${SSH_KEY_PATH}" -N ""
+    info "##### Please see below for SSH public key: "
+    cat "${SSH_KEY_PATH}.pub"
+    info "##### Follow step 4 to complete: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account"
+    info '##### After you added SSH key to your GitHub account, you can run "ssh -T git@github.com" to verify your configuration.'
+else
+    info "Skipping. SSH key already exists at ${SSH_KEY_PATH}"
+fi
