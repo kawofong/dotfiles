@@ -13,3 +13,4 @@
     cmd = code --wait --diff $LOCAL $REMOTE
 [push]
 	autoSetupRemote = true
+
