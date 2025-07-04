@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+{{ template "shared_script_utils.bash" . }}
+
+header "🐍 Installing Python."
+
+PYTHON_VERSION=3.12.11
+
+if [[ $(command -v pyenv) ]]; then
+    if [[ ! $(pyenv versions | grep "${PYTHON_VERSION}") ]]; then
+        pyenv install ${PYTHON_VERSION} && pyenv global ${PYTHON_VERSION}
+        eval "$(pyenv init -)"
+        info "Python ${PYTHON_VERSION} installed using pyenv."
+    else
+        info "Skipping. Python ${PYTHON_VERSION} is already installed."
+    fi
+else
+    info "Skipping. pyenv not installed."
+fi
+
+packages=(
+    {{ range $package := .packages.python.common.packages }}
+    "{{ $package }}"
+    {{ end }}
+)
+
+if [[ $(command -v pip) ]]; then
+    info "Installing Python packages with pip"
+    pip install "${packages[@]}"
+else
+    info "Skipping. Pip not installed."
+fi

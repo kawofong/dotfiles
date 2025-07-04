@@ -1,0 +1,4 @@
+[packages.python]
+    to_remove = []
+    [packages.python.common]
+        packages = ["ruff"]
