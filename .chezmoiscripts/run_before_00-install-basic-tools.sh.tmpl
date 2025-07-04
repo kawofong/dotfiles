@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+{{ template "shared_script_utils.bash" . }}
+
+HOMEBREW_BIN="/opt/homebrew/bin"
+
+header "Installing basic tools."
+
+if [[ ! $(command -v brew) ]]; then
+    info "🍺  Installing Homebrew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    info "Skipping. Homebrew already installed."
+fi
+
+if [[ -e "${HOMEBREW_BIN}/brew" && ! $(command -v brew) ]]; then
+    notice "Adding Homebrew to your PATH"
+    echo "eval \"\$(${HOMEBREW_BIN}/brew shellenv)\"" >>"${HOME}/.zprofile"
+    eval "$(${HOMEBREW_BIN}/brew shellenv)"
+fi
