@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+{{ template "shared_script_utils.bash" . }}
+
+header "🍺 Installing brew bundle."
+
+if [[ $(command -v brew) ]]; then
+    brew update && brew bundle install --global
+else
+    info "Skipping. Homebrew not installed."
+fi

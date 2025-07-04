@@ -144,7 +144,7 @@ _alert_() {
         _timestamp="$(date +"%b %d %R:%S")"
 
         if [[ ${_alertType} == header ]]; then
-            printf "\n✨ ${gray}%s${reset} ${_color}%s${reset} ✨\n" "${_timestamp}" "${_message}"
+            printf "\n${gray}%s${reset} ✨ ${_color}%s${reset} ✨\n" "${_timestamp}" "${_message}"
         else
             printf "${gray}%s${reset} ${_color}[%7s] %s${reset}\n" "${_timestamp}" "${_alertType}" "${_message}"
         fi
