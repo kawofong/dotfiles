@@ -1,4 +1,4 @@
-1. Open `todo.md` and select the first unchecked items to work on.
+1. Open `bin/todo.md` and select the first unchecked items to work on.
 2. Carefully plan each item.
 3. Create a new branch and implement your plan:
     - Write robust, well-documented code.
